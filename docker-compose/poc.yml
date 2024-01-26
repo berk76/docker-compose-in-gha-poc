@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+
+  poc-app:
+    image: berk76/poc-app:latest
+    container_name: poc_app
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      - DB_SERVER=poc-db
+      - DB_USERNAME=web
+      - DB_PASSWORD=change-it
+      - TZ=Europe/Prague
+
+  poc-db:
+    image: jacobalberty/firebird:v3.0.10
+    container_name: poc_db
+    restart: unless-stopped
+    ports:
+      - 3050:3050
+    environment:
+      - ISC_PASSWORD=change-it
+      - FIREBIRD_DATABASE=MYPOCDB
+      - FIREBIRD_USER=web
+      - FIREBIRD_PASSWORD=change-it
+      - TZ=Europe/Prague
+    volumes:
+      - ./poc-data/firebird:/firebird

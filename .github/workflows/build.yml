@@ -26,3 +26,14 @@ jobs:
         cp target/*.war docker/ROOT.war
         cd docker
         docker build -t berk76/poc-app:latest .
+
+    - name: Start containers
+      run: |
+        cd docker-compose
+        docker-compose -f poc.yml up -d
+
+    - name: Stop containers
+      if: always()
+      run: |
+        cd docker-compose
+        docker-compose -f poc.yml down

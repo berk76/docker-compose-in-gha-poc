@@ -34,6 +34,13 @@ jobs:
         cd docker-compose
         docker-compose -f poc.yml up -d
 
+    - name: Create schema
+      run: |
+        cd svjis-docker
+        docker cp ../db-schema/database.sql svjis_db:/firebird/
+        docker cp ./create-schema.sh svjis_db:/firebird/
+        docker exec svjis_db bash "/firebird/create-schema.sh"
+
     - name: Install Google Chrome
       run: |
         npx @puppeteer/browsers install chrome@stable

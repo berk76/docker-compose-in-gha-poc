@@ -34,28 +34,31 @@ public class Dispatcher extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         out = response.getWriter();
-        cnn = createConnection();
+        try {
+            cnn = createConnection();
 
-        out.println("<h1>Hello World</h1>");
+            out.println("<h1>Hello World</h1>");
 
-        String SELECT = "SELECT ID, DESCRIPTION FROM TEST_TABLE ORDER BY ID;";
-        try (Statement st = cnn.createStatement()) {
-            try (ResultSet rs = st.executeQuery(SELECT)) {
-                out.println("<table border='1'>");
-                out.println("<tr><th>Id</th><th>Description</th></tr>");
-                while (rs.next()) {
-                    out.println("<tr>");
-                    out.println("<td>");
-                    out.println(rs.getInt("ID"));
-                    out.println("</td><td>");
-                    out.println(rs.getString("DESCRIPTION"));
-                    out.println("</td>");
-                    out.println("</tr>");
+            String SELECT = "SELECT ID, DESCRIPTION FROM TEST_TABLE ORDER BY ID;";
+            try (Statement st = cnn.createStatement()) {
+                try (ResultSet rs = st.executeQuery(SELECT)) {
+                    out.println("<table border='1'>");
+                    out.println("<tr><th>Id</th><th>Description</th></tr>");
+                    while (rs.next()) {
+                        out.println("<tr>");
+                        out.println("<td>");
+                        out.println(rs.getInt("ID"));
+                        out.println("</td><td>");
+                        out.println(rs.getString("DESCRIPTION"));
+                        out.println("</td>");
+                        out.println("</tr>");
+                    }
+                    out.println("</table>");
                 }
-                out.println("</table>");
             }
-        }
-        
+        } catch (Exception ex) {
+            out.println(ex);
+        }    
     } catch (Exception ex) {
         LOGGER.log(Level.SEVERE, "Could not dispatch page", ex);
     } finally {

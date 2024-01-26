@@ -34,6 +34,22 @@ jobs:
         cd docker-compose
         docker-compose -f poc.yml up -d
 
+    - name: Install Google Chrome
+      run: |
+        npx @puppeteer/browsers install chrome@stable
+        google-chrome --version
+
+    - name: Run test
+      run: |
+        cd poc-selenium
+        mvn --no-transfer-progress package --file pom.xml
+
+    - name: Archive screen shots
+      uses: actions/upload-artifact@v3
+      with:
+        name: Screenshots
+        path: poc-selenium/target/*.png
+
     - name: Stop containers
       if: always()
       run: |

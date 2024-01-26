@@ -1,0 +1,20 @@
+# Maven
+target/
+
+# docker
+docker/*.war
+
+# NetBeans
+nb-configuration.xml
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# Idea
+.idea/
+*.iml
+
+# Other
+docker-compose/poc-data/

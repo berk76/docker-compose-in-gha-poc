@@ -47,7 +47,7 @@ public class Dispatcher extends HttpServlet {
                     out.println("<td>");
                     out.println(rs.getInt("ID"));
                     out.println("</td><td>");
-                    out.println(rs.getInt("DESCRIPTION"));
+                    out.println(rs.getString("DESCRIPTION"));
                     out.println("</td>");
                 }
                 out.println("</tr>");

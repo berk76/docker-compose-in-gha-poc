@@ -41,16 +41,17 @@ public class Dispatcher extends HttpServlet {
         String SELECT = "SELECT ID, DESCRIPTION FROM TEST_TABLE ORDER BY ID;";
         try (Statement st = cnn.createStatement()) {
             try (ResultSet rs = st.executeQuery(SELECT)) {
-                out.println("<table>");
-                out.println("<tr>");
+                out.println("<table border='1'>");
+                out.println("<tr><th>Id</th><th>Description</th></tr>");
                 while (rs.next()) {
+                    out.println("<tr>");
                     out.println("<td>");
                     out.println(rs.getInt("ID"));
                     out.println("</td><td>");
                     out.println(rs.getString("DESCRIPTION"));
                     out.println("</td>");
+                    out.println("</tr>");
                 }
-                out.println("</tr>");
                 out.println("</table>");
             }
         }

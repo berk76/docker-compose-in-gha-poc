@@ -2,5 +2,5 @@ USER=sysdba
 PASSWORD=change-it
 DATABASE=MYPOCDB
 
-/usr/local/firebird/bin/isql -user "$USER" -password "$PASSWORD" -input '/firebird/database.sql' "localhost:$DATABASE"
+/usr/local/firebird/bin/isql -user "$USER" -password "$PASSWORD" -input '/firebird/database.sql' "host.docker.internal:$DATABASE"
 rm /firebird/database.sql

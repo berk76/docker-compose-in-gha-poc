@@ -2,7 +2,9 @@
 
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,12 +31,29 @@ public class Dispatcher extends HttpServlet {
     Connection cnn = null;
     
     try {
-    response.setContentType("text/html;charset=UTF-8");
-    request.setCharacterEncoding("UTF-8");
-    out = response.getWriter();
-    cnn = createConnection();
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        out = response.getWriter();
+        cnn = createConnection();
 
-    out.println("<h1>Hello World</h1>");
+        out.println("<h1>Hello World</h1>");
+
+        String SELECT = "SELECT ID, DESCRIPTION FROM TEST_TABLE ORDER BY ID;";
+        try (Statement st = cnn.createStatement()) {
+            try (ResultSet rs = st.executeQuery(SELECT)) {
+                out.println("<table>");
+                out.println("<tr>");
+                while (rs.next()) {
+                    out.println("<td>");
+                    out.println(rs.getInt("ID"));
+                    out.println("</td><td>");
+                    out.println(rs.getInt("DESCRIPTION"));
+                    out.println("</td>");
+                }
+                out.println("</tr>");
+                out.println("</table>");
+            }
+        }
         
     } catch (Exception ex) {
         LOGGER.log(Level.SEVERE, "Could not dispatch page", ex);

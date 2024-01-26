@@ -9,7 +9,7 @@ public class MainTest {
 
     @Test
     @DisplayName("Selenium")
-    public void testRunTests() throws IOException, SvjisSeleniumException {
+    public void testRunTests() throws IOException {
         Main.runTests();
     }
 }

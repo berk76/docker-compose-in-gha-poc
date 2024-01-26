@@ -36,11 +36,10 @@ jobs:
 
     - name: Create schema
       run: |
-        pwd
         cd docker-compose
-        docker cp ../db-schema/database.sql poc-db:/firebird/
-        docker cp ./create-schema.sh poc-db:/firebird/
-        docker exec poc-db bash "/firebird/create-schema.sh"
+        # docker cp ../db-schema/database.sql poc-db:/firebird/
+        # docker cp ./create-schema.sh poc-db:/firebird/
+        # docker exec poc-db bash "/firebird/create-schema.sh"
 
     - name: Install Google Chrome
       run: |

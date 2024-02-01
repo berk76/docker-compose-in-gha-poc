@@ -13,8 +13,6 @@ services:
       - DB_USERNAME=web
       - DB_PASSWORD=change-it
       - TZ=Europe/Prague
-    networks:
-      - default
 
   poc-db:
     image: jacobalberty/firebird:v3.0.10

@@ -20,7 +20,6 @@ services:
     restart: unless-stopped
     ports:
       - 3050:3050
-    network_mode: "host"
     environment:
       - ISC_PASSWORD=change-it
       - FIREBIRD_DATABASE=MYPOCDB
@@ -29,3 +28,8 @@ services:
       - TZ=Europe/Prague
     volumes:
       - ./poc-data/firebird:/firebird
+
+networks:
+   default:
+     external: true
+     name: mynetwork

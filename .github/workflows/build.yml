@@ -34,7 +34,7 @@ jobs:
         cd docker-compose
         docker-compose -f poc.yml up -d
 
-    - name: Create schema
+    - name: Create db schema
       run: |
         cd docker-compose
         docker cp ../db-schema/database.sql poc-db:/firebird/
@@ -52,6 +52,7 @@ jobs:
         mvn --no-transfer-progress package --file pom.xml
 
     - name: Archive screen shots
+      if: always()
       uses: actions/upload-artifact@v3
       with:
         name: Screenshots

@@ -26,9 +26,11 @@ public class Main {
         driver.get("http://localhost:8080/Dispatcher");
         
         takeSnapShot(driver, "homepage.png");
+
+        String headerText = driver.findElement(By.tagName("h1")).getText();
+        Assert.assertTrue("Text not found!", headerText.contains("Hello World"));
         
         driver.quit();
-        System.out.println("Done!");
     }
 
 

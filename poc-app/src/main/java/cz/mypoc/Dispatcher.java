@@ -37,7 +37,7 @@ public class Dispatcher extends HttpServlet {
         try {
             cnn = createConnection();
 
-            out.println("<h1>Hello World</h1>");
+            out.println("<h1>Hello Wor</h1>");
 
             String SELECT = "SELECT ID, DESCRIPTION FROM TEST_TABLE ORDER BY ID;";
             try (Statement st = cnn.createStatement()) {

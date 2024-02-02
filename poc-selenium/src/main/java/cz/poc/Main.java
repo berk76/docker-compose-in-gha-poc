@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -30,7 +30,7 @@ public class Main {
         takeSnapShot(driver, "homepage.png");
 
         String headerText = driver.findElement(By.tagName("h1")).getText();
-        Assert.assertTrue("Text not found!", headerText.contains("Hello World"));
+        assertTrue(headerText.contains("Hello World"), "Text not found!");
         
         driver.quit();
     }

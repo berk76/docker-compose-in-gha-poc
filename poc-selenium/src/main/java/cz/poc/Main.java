@@ -29,8 +29,9 @@ public class Main {
         
         takeSnapShot(driver, "homepage.png");
 
+        String expectedHeader = "Hello World";
         String headerText = driver.findElement(By.tagName("h1")).getText();
-        assertTrue(headerText.contains("Hello World"), "Text not found!");
+        assertTrue(headerText.contains(expectedHeader), String.format("Expected header '%s' not found!", expectedHeader));
         
         driver.quit();
     }

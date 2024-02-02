@@ -1,1 +1,3 @@
-Docker Compose in Github Actions - POC
+# Docker compose in Github actions
+
+![Scheme](pic1.png)
